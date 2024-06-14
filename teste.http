@@ -22,4 +22,13 @@ Content-Type: application/json
 }
 
 
-### comenterio
+### login
+POST http://localhost:3000/login
+Content-Type: application/json
+
+{
+    "name": "Amanda",
+    "email": "amanda1@email.com",
+    "password": "1234"
+}
+

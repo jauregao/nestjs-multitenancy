@@ -34,4 +34,16 @@ export class UsersService {
   generateHash(password: string): string {
     return bcrypt.hashSync(password, 10);
   }
+
+  async findOneUser(idOrEmail: number | string) {
+    const user = await this.prismaService.user.findFirst({
+      where: {
+        ...(typeof idOrEmail === 'number'
+          ? { id: idOrEmail }
+          : { email: idOrEmail }),
+      },
+    });
+
+    return user;
+  }
 }

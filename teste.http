@@ -1,17 +1,25 @@
 # comenterio
 GET http://localhost:3000/users
 
-### comenterio
+### common user
 POST http://localhost:3000/users
 Content-Type: application/json
 
 {
     "name": "Amanda",
-    "email": "amanda4@email.com",
+    "email": "amanda@email.com",
     "password": "1234"
 }
 
-### comenterio
+### partner user
+POST http://localhost:3000/partners/users
+Content-Type: application/json
+
+{
+    "name": "Amanda",
+    "email": "amanda1@email.com",
+    "password": "1234"
+}
 
 
 ### comenterio

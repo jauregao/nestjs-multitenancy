@@ -1,6 +1,7 @@
 import { PrismaService } from './../../prisma/prisma.service';
 import { Injectable } from '@nestjs/common';
-import { CreateUserDto } from './dto/create-user.dto';
+import { CreatePartnerUserDto } from './dto/create-partner-user.dto';
+import { CreateCommonUserDto } from './dto/create-common-user.dto';
 import { UserRoles } from './user-roles';
 import * as bcrypt from 'bcrypt';
 
@@ -8,12 +9,23 @@ import * as bcrypt from 'bcrypt';
 export class UsersService {
   constructor(private readonly prismaService: PrismaService) {}
 
-  async create(data: CreateUserDto) {
+  async createPartnerUser(data: CreatePartnerUserDto) {
     const user = await this.prismaService.user.create({
       data: {
         ...data,
         password: this.generateHash(data.password),
         roles: [UserRoles.PARTNER],
+      },
+    });
+    return user;
+  }
+
+  async createCommonUser(data: CreateCommonUserDto) {
+    const user = await this.prismaService.user.create({
+      data: {
+        ...data,
+        password: this.generateHash(data.password),
+        roles: [UserRoles.USER],
       },
     });
     return user;

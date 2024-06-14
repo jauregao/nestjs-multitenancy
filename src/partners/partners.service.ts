@@ -28,19 +28,16 @@ export class PartnersService {
     return result;
   }
 
-  findAll() {
-    return `This action returns all partners`;
-  }
+  async update(id: number, updatePartnerDto: UpdatePartnerDto) {
+    const partner = await this.prismaService.partner.update({
+      where: {
+        id,
+      },
+      data: {
+        name: updatePartnerDto.name,
+      },
+    });
 
-  findOne(id: number) {
-    return `This action returns a #${id} partner`;
-  }
-
-  update(id: number, updatePartnerDto: UpdatePartnerDto) {
-    return `This action updates a #${id} partner`;
-  }
-
-  remove(id: number) {
-    return `This action removes a #${id} partner`;
+    return partner;
   }
 }

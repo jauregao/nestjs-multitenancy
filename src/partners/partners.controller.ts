@@ -4,7 +4,6 @@ import {
   Body,
   Patch,
   Param,
-  Delete,
   UseGuards,
   Req,
   Res,
@@ -36,12 +35,12 @@ export class PartnersController {
   }
 
   @Patch(':id')
-  update(@Param('id') id: string, @Body() updatePartnerDto: UpdatePartnerDto) {
-    return this.partnersService.update(+id, updatePartnerDto);
-  }
-
-  @Delete(':id')
-  remove(@Param('id') id: string) {
-    return this.partnersService.remove(+id);
+  update(
+    @Param('id') id: string,
+    @Body() updatePartnerDto: UpdatePartnerDto,
+    @Res() res: Response,
+  ) {
+    const partner = this.partnersService.update(+id, updatePartnerDto);
+    return res.status(HttpStatus.CREATED).json(partner);
   }
 }

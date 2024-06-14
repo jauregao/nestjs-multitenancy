@@ -1,10 +1,17 @@
 # comenterio
 GET http://localhost:3000/users
 
-# comenterio
+### comenterio
+POST http://localhost:3000/users
+Content-Type: application/json
+
+{
+    "name": "Amanda",
+    "email": "amanda4@email.com",
+    "password": "1234"
+}
+
+### comenterio
 
 
-# comenterio
-
-
-# comenterio
+### comenterio

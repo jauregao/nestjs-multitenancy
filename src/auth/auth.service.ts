@@ -12,7 +12,7 @@ export class AuthService {
   ) {}
 
   async login(data: LoginDto) {
-    const userExists = await this.userService.findOneUser(data.email);
+    const userExists = await this.userService.findByEmail(data.email);
 
     if (
       !userExists ||

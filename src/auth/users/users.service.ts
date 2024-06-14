@@ -35,12 +35,10 @@ export class UsersService {
     return bcrypt.hashSync(password, 10);
   }
 
-  async findOneUser(idOrEmail: number | string) {
+  async findByEmail(email: string) {
     const user = await this.prismaService.user.findFirst({
       where: {
-        ...(typeof idOrEmail === 'number'
-          ? { id: idOrEmail }
-          : { email: idOrEmail }),
+        email,
       },
     });
 

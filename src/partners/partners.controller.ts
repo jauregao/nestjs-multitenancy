@@ -40,7 +40,7 @@ export class PartnersController {
     @Body() updatePartnerDto: UpdatePartnerDto,
     @Res() res: Response,
   ) {
-    const partner = this.partnersService.update(+id, updatePartnerDto);
+    const partner = this.partnersService.update(id, updatePartnerDto);
     return res.status(HttpStatus.CREATED).json(partner);
   }
 }

@@ -25,30 +25,30 @@ export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
   @Post()
-  create(@Body() createEventDto: CreateEventDto, @Res() res: Response) {
-    const event = this.eventsService.create(createEventDto);
+  async create(@Body() createEventDto: CreateEventDto, @Res() res: Response) {
+    const event = await this.eventsService.create(createEventDto);
     return res.status(HttpStatus.CREATED).json(event);
   }
 
   @Get()
-  findAll(@Res() res: Response) {
-    const events = this.eventsService.findAll();
+  async findAll(@Res() res: Response) {
+    const events = await this.eventsService.findAll();
     return res.status(HttpStatus.OK).json(events);
   }
 
   @Get(':id')
-  findOne(@Param('id') id: string, @Res() res: Response) {
-    const event = this.eventsService.findOne(id);
+  async findOne(@Param('id') id: string, @Res() res: Response) {
+    const event = await this.eventsService.findOne(id);
     return res.status(HttpStatus.OK).json(event);
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updateEventDto: UpdateEventDto,
     @Res() res: Response,
   ) {
-    const event = this.eventsService.update(id, updateEventDto);
+    const event = await this.eventsService.update(id, updateEventDto);
     return res.status(HttpStatus.CREATED).json(event);
   }
 

@@ -21,12 +21,12 @@ export class PartnersController {
   constructor(private readonly partnersService: PartnersService) {}
 
   @Post()
-  create(
+  async create(
     @Body() createPartnerDto: CreatePartnerDto,
     @Req() req: any,
     @Res() res: Response,
   ) {
-    const partner = this.partnersService.create({
+    const partner = await this.partnersService.create({
       ...createPartnerDto,
       userId: req.user.id,
     });
@@ -35,12 +35,12 @@ export class PartnersController {
   }
 
   @Patch(':id')
-  update(
+  async update(
     @Param('id') id: string,
     @Body() updatePartnerDto: UpdatePartnerDto,
     @Res() res: Response,
   ) {
-    const partner = this.partnersService.update(id, updatePartnerDto);
+    const partner = await this.partnersService.update(id, updatePartnerDto);
     return res.status(HttpStatus.CREATED).json(partner);
   }
 }

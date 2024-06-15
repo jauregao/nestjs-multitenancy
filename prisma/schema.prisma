@@ -32,7 +32,7 @@ model Partner {
   createdAt   DateTime      @default(now())
   updatedAt   DateTime      @updatedAt
   PartnerUser PartnerUser[]
-  Events      Events[]
+  Events      Event[]
 }
 
 model PartnerUser {
@@ -47,7 +47,7 @@ model PartnerUser {
   @@unique([userId])
 }
 
-model Events {
+model Event {
   id          String   @id @default(uuid())
   name        String
   description String
@@ -56,6 +56,4 @@ model Events {
   updatedAt   DateTime @updatedAt
   partnerId   String
   Partner     Partner  @relation(fields: [partnerId], references: [id])
-
-  @@unique([partnerId])
 }

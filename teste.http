@@ -17,10 +17,9 @@ Content-Type: application/json
 
 {
     "name": "Amanda",
-    "email": "amanda1@email.com",
+    "email": "amanda66@email.com",
     "password": "1234"
 }
-
 
 ### login
 POST http://localhost:3000/login
@@ -28,7 +27,32 @@ Content-Type: application/json
 
 {
     "name": "Amanda",
-    "email": "amanda1@email.com",
+    "email": "amanda66@email.com",
     "password": "1234"
 }
 
+### partner user
+POST http://localhost:3000/partners
+Content-Type: application/json
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4ZTU2YWNjLTY5MDQtNGI3ZC04YjM5LTI0MWRkZjQ5MzRjYSIsIm5hbWUiOiJBbWFuZGEiLCJlbWFpbCI6ImFtYW5kYTY2QGVtYWlsLmNvbSIsInJvbGVzIjpbIlBBUlRORVIiXSwiY3JlYXRlZEF0IjoiMjAyNC0wNi0xNVQwMDoxMTo0MS41MjlaIiwidXBkYXRlZEF0IjoiMjAyNC0wNi0xNVQwMDoxMTo0MS41MjlaIiwiaWF0IjoxNzE4NDEwMzA0LCJleHAiOjE3MTg0NTM1MDR9.frrcRweORvYvyu_zqsL8CAS2guc4_ejX2odJvQvkDAo
+
+{
+    "name": "Amanda 66"
+}
+
+
+### create event
+POST http://localhost:3000/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4ZTU2YWNjLTY5MDQtNGI3ZC04YjM5LTI0MWRkZjQ5MzRjYSIsIm5hbWUiOiJBbWFuZGEiLCJlbWFpbCI6ImFtYW5kYTY2QGVtYWlsLmNvbSIsInJvbGVzIjpbIlBBUlRORVIiXSwiY3JlYXRlZEF0IjoiMjAyNC0wNi0xNVQwMDoxMTo0MS41MjlaIiwidXBkYXRlZEF0IjoiMjAyNC0wNi0xNVQwMDoxMTo0MS41MjlaIiwiaWF0IjoxNzE4NDEwMzA0LCJleHAiOjE3MTg0NTM1MDR9.frrcRweORvYvyu_zqsL8CAS2guc4_ejX2odJvQvkDAo
+Content-Type: application/json
+
+{
+    "name": "Evento16",
+    "description": "Evento16",
+    "date": "2024-07-12T23:21:34.60"
+}
+
+###
+GET  http://localhost:3000/events
+Authorization: Bearer eyJhbGciOiJIUzI1NiIsInR5cCI6IkpXVCJ9.eyJpZCI6ImU4ZTU2YWNjLTY5MDQtNGI3ZC04YjM5LTI0MWRkZjQ5MzRjYSIsIm5hbWUiOiJBbWFuZGEiLCJlbWFpbCI6ImFtYW5kYTY2QGVtYWlsLmNvbSIsInJvbGVzIjpbIlBBUlRORVIiXSwiY3JlYXRlZEF0IjoiMjAyNC0wNi0xNVQwMDoxMTo0MS41MjlaIiwidXBkYXRlZEF0IjoiMjAyNC0wNi0xNVQwMDoxMTo0MS41MjlaIiwiaWF0IjoxNzE4NDEwMzA0LCJleHAiOjE3MTg0NTM1MDR9.frrcRweORvYvyu_zqsL8CAS2guc4_ejX2odJvQvkDAo
+Content-Type: application/json

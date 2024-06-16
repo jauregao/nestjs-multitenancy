@@ -1,3 +1,4 @@
+import { RolesGuard } from './../auth/roles/roles.guard';
 import {
   Controller,
   Get,
@@ -17,13 +18,16 @@ import { UpdateEventDto } from './dto/update-event.dto';
 import { Response } from 'express';
 import { AuthGuard } from 'src/auth/auth.guard';
 import { TenantInterceptor } from 'src/tenant/tenant.interceptor';
+import { Roles } from 'src/auth/roles/roles.decorator';
+import { UserRoles } from 'src/auth/users/user-roles';
 
 @UseInterceptors(TenantInterceptor)
-@UseGuards(AuthGuard)
+@UseGuards(AuthGuard, RolesGuard)
 @Controller('events')
 export class EventsController {
   constructor(private readonly eventsService: EventsService) {}
 
+  @Roles(UserRoles.PARTNER, UserRoles.ADMIN)
   @Post()
   async create(@Body() createEventDto: CreateEventDto, @Res() res: Response) {
     const event = await this.eventsService.create(createEventDto);
@@ -42,6 +46,7 @@ export class EventsController {
     return res.status(HttpStatus.OK).json(event);
   }
 
+  @Roles(UserRoles.PARTNER, UserRoles.ADMIN)
   @Patch(':id')
   async update(
     @Param('id') id: string,
@@ -52,6 +57,7 @@ export class EventsController {
     return res.status(HttpStatus.CREATED).json(event);
   }
 
+  @Roles(UserRoles.PARTNER, UserRoles.ADMIN)
   @Delete(':id')
   remove(@Param('id') id: string, @Res() res: Response) {
     this.eventsService.remove(id);

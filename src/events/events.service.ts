@@ -14,7 +14,7 @@ export class EventsService {
   ) {}
 
   async create(createEventDto: CreateEventDto) {
-    const event = await this.prismaService.events.create({
+    const event = await this.prismaService.event.create({
       data: {
         name: createEventDto.name,
         description: createEventDto.description,
@@ -27,14 +27,19 @@ export class EventsService {
   }
 
   async findAll() {
-    const events = await this.prismaService.events.findMany();
+    const events = await this.prismaService.event.findMany({
+      where: {
+        partnerId: this.tenantService.getTenant().id,
+      },
+    });
     return events;
   }
 
   async findOne(id: string) {
-    const event = await this.prismaService.events.findFirst({
+    const event = await this.prismaService.event.findFirst({
       where: {
         id,
+        partnerId: this.tenantService.getTenant().id,
       },
     });
 
@@ -46,9 +51,10 @@ export class EventsService {
   }
 
   async update(id: string, updateEventDto: UpdateEventDto) {
-    const event = await this.prismaService.events.findFirst({
+    const event = await this.prismaService.event.findFirst({
       where: {
         id,
+        partnerId: this.tenantService.getTenant().id,
       },
     });
 
@@ -56,9 +62,9 @@ export class EventsService {
       throw new NotFoundException('Event not found.');
     }
 
-    const updatedEvent = await this.prismaService.events.update({
+    const updatedEvent = await this.prismaService.event.update({
       where: {
-        id,
+        id: event.id,
       },
       data: {
         ...updateEventDto,
@@ -69,9 +75,10 @@ export class EventsService {
   }
 
   async remove(id: string) {
-    const event = await this.prismaService.events.findFirst({
+    const event = await this.prismaService.event.findFirst({
       where: {
         id,
+        partnerId: this.tenantService.getTenant().id,
       },
     });
 
